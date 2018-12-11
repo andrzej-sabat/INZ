@@ -5,10 +5,83 @@ buildscript {
     repositories {
         google()
         jcenter()
+        fabric ...
     }
+    apply plugin: 'com.android.application'
+    apply plugin: 'io.fabric'
+    
+    repositories {
+    maven { url 'https://maven.fabric.io/public' }
+    }
+    def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file('keys.properties')
+def fabricKeyStoreFile = rootProject.file('fabric.properties')
+
+if (keystorePropertiesFile.exists()) {
+    println 'KeyFile Exists'
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+} else {
+    // Load keystore properties from environment or set their default values
+    def env = System.getenv()
+    if (env['KEYSTORE_ALIAS']) keystoreProperties.put('keyAlias', env['KEYSTORE_ALIAS'])
+    else keystoreProperties.put('keyAlias', "myDefaultAlias")
+    
+    if (env['KEYSTORE_KEY_PASS']) keystoreProperties.put('keyPassword', env['KEYSTORE_KEY_PASS'])
+    else keystoreProperties.put('keyPassword', "myDefaultKeyPass")
+    
+    if (env['KEYSTORE_HOME']) keystoreProperties.put('storeFile', env['KEYSTORE_HOME'])
+    else keystoreProperties.put('storeFile', "${project.projectDir.absolutePath}/keystore.jks")
+    
+    if (env['KEYSTORE_KEY_PASS']) keystoreProperties.put('storePassword', env['KEYSTORE_STORE_PASS'])
+    else keystoreProperties.put('storePassword', "myDefaultStorePass")
+    
+    if (env['FABRIC_KEY']) keystoreProperties.put('fabric_api_key', env['FABRIC_KEY'])
+    else keystoreProperties.put('fabric_api_key', "myDefCrashlyticsApiKey")
+    
+    if (env['FABRIC_SECRET']) keystoreProperties.put('fabric_apiSecret', env['FABRIC_SECRET'])
+    else keystoreProperties.put('fabric_apiSecret', "myDefCrashlyticsApiKey")
+}
+
+if (!fabricKeyStoreFile.exists()) {
+    fabricKeyStoreFile = new File("${project.projectDir.absolutePath}/fabric.properties")
+    Properties properties = new Properties()
+    properties.put("apiSecret", keystoreProperties['fabric_apiSecret'])
+    properties.put("apiKey", keystoreProperties['fabric_api_key'])
+    properties.store(new FileWriter(fabricKeyStoreFile), "")
+}
+
+    android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+
+    defaultConfig {
+        applicationId "someapplication"
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+}
+
+
     dependencies {
         classpath 'com.android.tools.build:gradle:3.2.1'
         classpath 'com.google.gms:google-services:4.0.1'
+        
+          compile fileTree(dir: 'libs', include: ['*.jar'])
+        androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+         })
+    compile 'com.android.support:appcompat-v7:25.2.0'
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.mockito:mockito-core:1.10.19'
+    compile('com.crashlytics.sdk.android:crashlytics:2.6.6@aar') {
+        transitive = true;
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
