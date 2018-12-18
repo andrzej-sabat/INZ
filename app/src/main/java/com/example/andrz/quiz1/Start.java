@@ -42,7 +42,7 @@ public class Start extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        }
+        });
     }
     }
 
