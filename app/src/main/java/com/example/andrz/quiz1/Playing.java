@@ -1,9 +1,9 @@
 package com.example.andrz.quiz1;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -11,8 +11,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.andrz.quiz1.Common.Common;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 public class Playing extends AppCompatActivity implements View.OnClickListener {
@@ -25,8 +23,7 @@ public class Playing extends AppCompatActivity implements View.OnClickListener {
 
     int index=0, score= 0, thisQuestion=0,totalQuestion,correctAnswer;
 
-    FirebaseDatabase database;
-    DatabaseReference questions;
+
 
     ProgressBar progressBar;
     ImageView question_image;
@@ -37,12 +34,12 @@ public class Playing extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playing);
 
-        database = FirebaseDatabase.getInstance();
-        questions = database.getReference("Questions");
+
 
         txtScore = (TextView)findViewById(R.id.txtScore);
         txtQuestionNum = (TextView)findViewById(R.id.txtTotalQuestion);
         question_text = (TextView)findViewById(R.id.question_text);
+        question_image = (ImageView)findViewById(R.id.question_image);
 
         progressBar = (ProgressBar)findViewById(R.id.progressBar);
 
@@ -99,8 +96,8 @@ public class Playing extends AppCompatActivity implements View.OnClickListener {
             }
             else{
                 question_text.setText(Common.questionList.get(index).getQuestion());
-                question_image.setVisibility(View.VISIBLE);
-                question_text.setVisibility(View.INVISIBLE);
+                question_image.setVisibility(View.INVISIBLE);
+                question_text.setVisibility(View.VISIBLE);
             }
             btnA.setText(Common.questionList.get(index).getAnswerA());
             btnB.setText(Common.questionList.get(index).getAnswerB());
@@ -123,14 +120,14 @@ public class Playing extends AppCompatActivity implements View.OnClickListener {
     }
 
     @Override
-    protected void onPostResume() {
-        super.onPostResume();
+    protected void onResume() {
+        super.onResume();
 
         totalQuestion = Common.questionList.size();
 
         mCountDown = new CountDownTimer(TIMEOUT,INTERVAL) {
             @Override
-            public void onTick(long minices) {
+            public void onTick(long minisec) {
                 progressBar.setProgress(progressValue);
                 progressValue++;
 
@@ -144,6 +141,6 @@ public class Playing extends AppCompatActivity implements View.OnClickListener {
                 showQuestion(++index);
             }
         };
-        showQuestion(++index);
+        showQuestion(index);
     }
 }

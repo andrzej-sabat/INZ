@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.andrz.quiz1.Common.Common;
 import com.example.andrz.quiz1.Model.User;
 
 import com.google.firebase.database.DataSnapshot;
@@ -79,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
                         if(login.getPassword().equals(pwd))
                         {
                             Intent homeActivity = new Intent(MainActivity.this,Home.class);
+                            Common.currentUser = login;
                             startActivity(homeActivity);
                             finish();
                         }
@@ -122,14 +124,14 @@ public class MainActivity extends AppCompatActivity {
         alertDialog.setView(sign_up_layout);
        // alertDialog.setIcon(R.drawable.ic_account_box_black_24dp);
 
-        alertDialog.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+        alertDialog.setNegativeButton("ANULUJ", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();
             }
         });
 
-        alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+        alertDialog.setPositiveButton("POTWIERDŹ", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int which) {
                 final User user = new User(edtNewUser.getText().toString(), edtNewPassword.getText().toString(), edtNewEmail.getText().toString());

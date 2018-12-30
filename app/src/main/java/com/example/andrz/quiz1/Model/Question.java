@@ -1,11 +1,11 @@
 package com.example.andrz.quiz1.Model;
 
 public class Question {
-    private String Question,AnswerA,AnswerB,AnswerC,AnswerD,CorrectAnswer,CategoryId,isImageQuestion;
+    private String Question,AnswerA,AnswerB,AnswerC,AnswerD,CorrectAnswer,CategoryId,IsImageQuestion;
 
+    public Question(){
 
-    public Question(){}
-
+    }
     public Question(String question, String answerA, String answerB, String answerC, String answerD, String correctAnswer, String categoryId, String isImageQuestion) {
         Question = question;
         AnswerA = answerA;
@@ -14,7 +14,7 @@ public class Question {
         AnswerD = answerD;
         CorrectAnswer = correctAnswer;
         CategoryId = categoryId;
-        this.isImageQuestion = isImageQuestion;
+        IsImageQuestion = isImageQuestion;
     }
 
     public String getQuestion() {
@@ -74,10 +74,10 @@ public class Question {
     }
 
     public String getIsImageQuestion() {
-        return isImageQuestion;
+        return IsImageQuestion;
     }
 
     public void setIsImageQuestion(String isImageQuestion) {
-        this.isImageQuestion = isImageQuestion;
+        IsImageQuestion = isImageQuestion;
     }
 }
