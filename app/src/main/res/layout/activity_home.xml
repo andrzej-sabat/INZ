@@ -19,15 +19,17 @@
 
     </FrameLayout>
     <android.support.design.widget.BottomNavigationView
+        android:background="#87bdd8"
         android:id="@+id/navigation"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:layout_alignParentBottom="true"
-        android:background="@color/colorPrimary"
         app:itemIconTint="@drawable/nav_item_color_state"
         app:itemTextColor="@drawable/nav_item_color_state"
-        app:menu="@menu/bottom_menu"
-        >
+        app:menu="@menu/bottom_menu">
+       <!-- android:background="@color/colorPrimary" -->
+
+
 
     </android.support.design.widget.BottomNavigationView>
 

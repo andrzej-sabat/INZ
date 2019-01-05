@@ -40,6 +40,7 @@
 
             <ProgressBar
                 android:id="@+id/doneProgressBar"
+                android:max="5"
                 style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
@@ -50,7 +51,7 @@
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:id="@+id/btnTryAgain"
                 android:layout_margin="8dp"
-                android:background="#AD1457"
+                android:background="#87bdd8"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:text="ZAGRAJ PONOWNIE"
                 android:textStyle="bold"

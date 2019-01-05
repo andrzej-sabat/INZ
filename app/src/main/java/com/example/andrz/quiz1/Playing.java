@@ -16,7 +16,7 @@ import com.squareup.picasso.Picasso;
 public class Playing extends AppCompatActivity implements View.OnClickListener {
 
     final static long INTERVAL = 1000;
-    final static long TIMEOUT = 7000;
+    final static long TIMEOUT = 12000;
     int progressValue = 0;
 
     CountDownTimer mCountDown;

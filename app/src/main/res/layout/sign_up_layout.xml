@@ -13,8 +13,9 @@
 
 
             <com.rengwuxian.materialedittext.MaterialEditText
+                android:layout_margin="10dp"
                     android:id="@+id/edtNewUserName"
-                    android:hint="User name"
+                    android:hint="Nazwa użytkownika"
                     android:textColorHint="@color/colorPrimary"
                     android:textColor="@color/colorPrimary"
                     android:textSize="24sp"
@@ -29,8 +30,9 @@
 
 
         <com.rengwuxian.materialedittext.MaterialEditText
+            android:layout_margin="10dp"
                 android:id="@+id/edtNewPassword"
-                android:hint="Password"
+                android:hint="Hasło"
                 android:textColorHint="@color/colorPrimary"
                 android:textColor="@color/colorPrimary"
                 android:textSize="24sp"
@@ -44,6 +46,7 @@
         />
 
         <com.rengwuxian.materialedittext.MaterialEditText
+            android:layout_margin="10dp"
                 android:id="@+id/edtNewEmail"
                 android:hint="Email"
                 android:textColorHint="@color/colorPrimary"

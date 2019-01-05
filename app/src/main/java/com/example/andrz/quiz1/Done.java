@@ -56,7 +56,7 @@ public class Done extends AppCompatActivity {
             progressBar.setProgress(correctAnswer);
 
             question_score.child(String.format("%s_%s",Common.currentUser.getUserName(),Common.categoryId))
-                    .setValue(new QuestionScore(String.format("%s_%s",Common.currentUser.getUserName(),Common.categoryId),Common.currentUser.getUserName(),String.valueOf(score)));
+                    .setValue(new QuestionScore(String.format("%s_%s",Common.currentUser.getUserName(),Common.categoryId),Common.currentUser.getUserName(),String.valueOf(score),Common.categoryId,Common.categoryName));
 
         }
 

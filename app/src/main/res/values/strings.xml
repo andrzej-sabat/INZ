@@ -1,6 +1,8 @@
 <resources>
-    <string name="app_name">Quiz1</string>
+    <string name="app_name">Quiz</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="nazwa">Nazwa</string>
+    <string name="wynik">Wynik</string>
 </resources>

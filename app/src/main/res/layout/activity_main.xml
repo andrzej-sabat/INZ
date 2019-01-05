@@ -7,15 +7,6 @@
     android:background="@drawable/tlo"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ImageView
         android:layout_marginBottom="20dp"
         android:layout_centerHorizontal="true"
@@ -52,7 +43,7 @@
 
                 <com.rengwuxian.materialedittext.MaterialEditText
                     android:id="@+id/edtUserName"
-                    android:hint="User name"
+                    android:hint="Nazwa użytkownika"
                     android:textColorHint="@color/colorPrimary"
                     android:textColor="@color/colorPrimary"
                     android:textSize="24sp"
@@ -68,7 +59,7 @@
 
                 <com.rengwuxian.materialedittext.MaterialEditText
                     android:id="@+id/edtPassword"
-                    android:hint="Password"
+                    android:hint="Hasło"
                     android:textColorHint="@color/colorPrimary"
                     android:textColor="@color/colorPrimary"
                     android:textSize="24sp"
@@ -96,6 +87,7 @@
             android:weightSum="2">
 
             <Button
+                android:background="#87bdd8"
                 android:id="@+id/btn1"
                 android:text="Zarejestruj się"
                 style="@style/Widget.AppCompat.Button.Colored"
@@ -104,6 +96,7 @@
                 android:layout_height="wrap_content"/>
 
             <Button
+                android:background="#87bdd8"
                 android:id="@+id/btn2"
                 android:text="Zaloguj się"
                 style="@style/Widget.AppCompat.Button.Colored"

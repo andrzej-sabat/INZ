@@ -1,11 +1,13 @@
 package com.example.andrz.quiz1;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,7 +59,7 @@ public class RankingFragment extends Fragment {
 
         rankingList = (RecyclerView)myFragment.findViewById(R.id.rankingList);
         layoutManager  = new LinearLayoutManager(getActivity());
-        rankingList.setHasFixedSize(true);
+        //rankingList.setHasFixedSize(true);
 
         layoutManager.setReverseLayout(true);
         layoutManager.setStackFromEnd(true);
@@ -69,16 +71,14 @@ public class RankingFragment extends Fragment {
             public void callBack(Ranking ranking) {
                rankingTbl.child(ranking.getUserName()).setValue(ranking);
 
+               showRanking();
             }
         });
 
-        adapter = new FirebaseRecyclerAdapter<Ranking, RankingViewHolder>( Ranking.class,
-                R.layout.layout_ranking,
-                RankingViewHolder.class,
-                rankingTbl.orderByChild("score")) {
+
+        adapter = new FirebaseRecyclerAdapter<Ranking, RankingViewHolder>(Ranking.class,R.layout.layout_ranking,RankingViewHolder.class,rankingTbl.orderByChild("score")) {
             @Override
             protected void populateViewHolder(RankingViewHolder viewHolder, final Ranking model, int position) {
-
                 viewHolder.txt_name.setText(model.getUserName());
                 viewHolder.txt_score.setText(String.valueOf(model.getScore()));
 
@@ -86,19 +86,36 @@ public class RankingFragment extends Fragment {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
 
+                        Intent scoreDetail = new Intent(getActivity(),ScoreDetail.class);
+                        scoreDetail.putExtra("viewUser",model.getUserName());
+                        startActivity(scoreDetail);
                     }
                 });
-
 
             }
         };
         adapter.notifyDataSetChanged();
         rankingList.setAdapter(adapter);
 
-
         return myFragment;
     }
 
+    private void showRanking() {
+        rankingTbl.orderByChild("score").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot data:dataSnapshot.getChildren()){
+                    Ranking local = data.getValue(Ranking.class);
+                    Log.d("DEBUG",local.getUserName());
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
 
 
     private void updateScore(final String userName, final RankingCallBack<Ranking>callBack) {
