@@ -20,4 +20,9 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 # Instabug
--dontwarn com.instabug.** 
+-dontwarn com.squareup.**
+-dontwarn org.apache.**
+-dontwarn com.sun.**
+-dontwarn javax.activation.**
+
+
