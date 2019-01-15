@@ -18,6 +18,7 @@ setProperty() {
 propertiesFile='gradle.properties'
 chmod +x ${propertiesFile}
 
+# update key properties based on build type
 if [ $buildType = 'debug' ]; then
 	(setProperty "KEYSTORE" "debug.keystore")
 	(setProperty "STORE_PASSWORD" "123456")
@@ -35,9 +36,9 @@ chmod +x gradlew
 ./gradlew clean --stacktrace
 
 # build
-if [ $buildType = "debug" ]; then
+if [ $buildType = 'debug' ]; then
 	./gradlew assembleDebug --stacktrace
-elif [ $buildType = "release" ]; then
+elif [ $buildType = 'release' ]; then
 	./gradlew assembleRelease --stacktrace
 fi
 
@@ -48,9 +49,9 @@ fi
 ./gradlew lint
 
 # run junit test
-if [ $buildType = "debug" ]; then
+if [ $buildType = 'debug' ]; then
     ./gradlew testDebugUnitTest --stacktrace
-elif [ $buildType = "release" ]; then
+elif [ $buildType = 'release' ]; then
     ./gradlew testReleaseUnitTest --stacktrace
 fi
 
