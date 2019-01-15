@@ -35,9 +35,9 @@ chmod +x gradlew
 ./gradlew clean --stacktrace
 
 # build
-if [[$buildType = 'debug']]; then
+if [ $buildType = "debug" ]; then
 	./gradlew assembleDebug --stacktrace
-elif [[$buildType = 'release']]; then
+elif [ $buildType = "release" ]; then
 	./gradlew assembleRelease --stacktrace
 fi
 
