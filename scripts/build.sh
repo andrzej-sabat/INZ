@@ -18,7 +18,17 @@ setProperty() {
 propertiesFile='gradle.properties'
 chmod +x ${propertiesFile}
 
-
+if [ $buildType = 'debug' ]; then
+	(setProperty "KEYSTORE" "debug.keystore")
+	(setProperty "STORE_PASSWORD" "123456")
+	(setProperty "KEY_ALIAS" "my_alias")
+	(setProperty "KEY_PASSWORD" "123456")
+elif [ $buildType = 'release' ]; then
+	(setProperty "KEYSTORE" "release.keystore")
+	(setProperty "STORE_PASSWORD" "$storePass")
+	(setProperty "KEY_ALIAS" "$keyAlias")
+	(setProperty "KEY_PASSWORD" "$keyPass")
+fi
 
 # clean project
 chmod +x gradlew
