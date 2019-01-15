@@ -48,9 +48,9 @@ fi
 ./gradlew lint
 
 # run junit test
-if [[$buildType = 'debug']]; then
+if [ $buildType = "debug" ]; then
     ./gradlew testDebugUnitTest --stacktrace
-elif [[$buildType = 'release']]; then
+elif [ $buildType = "release" ]; then
     ./gradlew testReleaseUnitTest --stacktrace
 fi
 
