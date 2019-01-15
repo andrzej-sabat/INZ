@@ -47,7 +47,7 @@ fi
 # -----------------------------------------------------------------
 # -------------------------- POST BUILD ---------------------------
 # -----------------------------------------------------------------
-apkFileName="app-$buildType.apk"
+apkFileName="app-debug.apk"
 rm -r artifacts/
 rm -r report/
 mkdir artifacts
